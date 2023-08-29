@@ -52,8 +52,8 @@ const StudentForm = () => {
     const handleAnswerChange = (index,e) => {
         const newFormAnswer = {...formAnswer };
         newFormAnswer[category].questions[index].answer = e.target.value;
-        //console.log(e.target.value);
-        //console.log(newFormAnswer);
+        console.log(e.target.value);
+        console.log(newFormAnswer);
         setFormAnswer(newFormAnswer);
         
     };
@@ -77,28 +77,38 @@ const StudentForm = () => {
     }
 
     return (
-        <div className='container'>
-            <h1 className='text'>Student Registration Form</h1>
-            <form name="studentForm" onSubmit={handleSubmit}>
-                <label >Name :
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <div className=' w-screen h-full px-8 bg-slate-400 '>
+            <h1 className='text font-bold text-xl py-10'>Student Registration Form</h1>
+          <div className='container'>
+                
+            <form name="studentForm" className="grid grid-cols-2 gap-4 " onSubmit={handleSubmit}>
+           
+                <label className='col-start-1 col-end-2'>Name :&nbsp;
+                    <input className="border-black border-solid border-2 hover:border-pink-400  rounded p-1 pr-1 col-start-2 col-end-3 col-span-1" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
+                
                 <br /><br />
-                <label >Email :
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                
+                <label className='col-start-1 col-end-2'>Email :&nbsp;
+                    <input className="border-black border-solid border-2  hover:border-pink-400 col-start-2 col-end-3 rounded p-1 pr-1 " type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
+                
                 <br /><br />
-                <label >Register Number :
-                    <input type="number" value={registerNumber} onChange={(e) => setRegisterNumber(e.target.value)} />
+               
+                <label className='col-start-1 col-end-2'>Register Number :&nbsp;
+                    <input className="border-black border-solid border-2  hover:border-pink-400 col-start-2 col-end-3 rounded p-1 pr-1 " type="number" value={registerNumber} onChange={(e) => setRegisterNumber(e.target.value)} />
                 </label>
+                
                 <br /><br />
-                <label >Year of Study :
-                    <input type="number" value={year} onChange={(e) => setYear(e.target.value)} />
+                
+                <label className='col-start-1 col-end-2'>Year of Study :&nbsp;
+                    <input className="border-black border-solid border-2  hover:border-pink-400 col-start-2 col-end-3 rounded p-1 pr-1 " type="number" value={year} onChange={(e) => setYear(e.target.value)} />
                 </label>
+               
                 <br /><br />
 
-                <label >College Name :
-                    <select value={college} onChange={handleCollegeChange}>
+                <label className='col-start-1 col-end-2'>College Name :&nbsp;
+                    <select className="border-black border-solid border-2  hover:border-pink-400 px-3  text-center col-start-2 col-end-3 rounded p-1 pr-1 " value={college} onChange={handleCollegeChange}>
                         <option value=''>Select College Name:</option>
                         {collegeOptions?.map((collegeOption) => (
                             <option key={collegeOption} value={collegeOption}>
@@ -108,8 +118,8 @@ const StudentForm = () => {
                     </select>
                 </label>
                 <br /><br />
-                {college && <label >Department Name :
-                    <select value={department} onChange={(e) => setDepartment(e.target.value)}>
+                {college && <label className='col-start-1 col-end-2'>Department Name :&nbsp;
+                    <select className="border-black border-solid border-2  hover:border-pink-400 px-3 text-center  p-1 pr-1 col-start-2 col-end-3 rounded" value={department} onChange={(e) => setDepartment(e.target.value)}>
                         <option value=''>Select Department: </option>
                         {departmentOptions[college]?.map((departmentOption) => (
                             <option value={departmentOption}>
@@ -120,8 +130,8 @@ const StudentForm = () => {
                 </label>
                 }
                 <br /><br />
-                <label >Category : 
-                    <select value={category} onChange={handleCategoryChange}>
+                <label className='col-start-1 col-end-2'>Category : &nbsp;
+                    <select className="border-black border-solid border-2  hover:border-pink-400  p-1 pr-2 col-start-2 col-end-3 text-center rounded" value={category} onChange={handleCategoryChange}>
                         <option value=''>Select Category</option>
                         {categoryOptions?.map((categoryOption) => (
                             <option value={categoryOption}>
@@ -132,15 +142,15 @@ const StudentForm = () => {
                 </label>
                 <br /><br />
                 {category && (
-                    <label >Questions :
+                    <label className='col-start-1 col-end-2'>Questions :&nbsp;
                         <div>
-                            {categoryQuestions[category].questions?.map((categoryQuestion, index) => {
-                                console.log("hi");
+                            {formAnswer[category].questions?.map((categoryQuestion, index) => {
+                                
                                 return <div key={index}>
-                                    <label>Question {index + 1} : </label>
+                                    <label >Question {index + 1} :&nbsp; </label>
                                     <p value={categoryQuestion.question} >{categoryQuestion.question}</p>
-                                    <label>Answer : </label>
-                                    <input type="text" value={categoryQuestion.answer} onChange={(e) => handleAnswerChange(index, e)}/>   
+                                    <label >Answer : &nbsp;</label>
+                                    <input  className="border-black border-solid border-2 p-1 pr-2 hover:border-pink-400 rounded" type="text" value={categoryQuestion.answer} onChange={(e) => handleAnswerChange(index, e)}/>   
                                     
                                 </div>
                             })}
@@ -148,10 +158,12 @@ const StudentForm = () => {
                     </label>
                 )}
 
-                <input type='submit' />
+                <input type='submit' className='bg-black text-white p-1 pr-1 rounded-lg hover:bg-purple-400 hover:text-black' />
 
             </form>
-        </div>
+            </div>
+            </div>
+        
     )
 }
 
